@@ -39,6 +39,7 @@ app.use("/api",(req,res,next)=>{
 });*/
 //USING OF MULTIPLE MIDDLEWARE
 
+/*
 let check= (req,res,next)=>{
    let{token}=req.query;
    if(token==="giveacess"){
@@ -46,12 +47,11 @@ let check= (req,res,next)=>{
    next();
    }
    throw new err(401,"ACCESS DENIED");
-   
-
 };
 app.use("/api",check,(req,res)=>{
    res.send("it passed though check token");
 });
+*/
 //404 page
 /*
 app.use((req,res)=>{
