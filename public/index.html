@@ -129,6 +129,37 @@
         </div>
     </section>
 
+    <section id="contact" class="section">
+        <div class="section-container form-container">
+            <h2>Contact <span class="gradient-text">Me</span></h2>
+            <form id="contact-form" class="contact-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn btn-primary" id="submit-btn" style="width: intrinsic;">Send Message</button>
+            </form>
+            <div id="form-status" style="display:none; text-align: center; margin-top: 15px; font-weight: bold; color: #a855f7;"></div>
+        </div>
+    </section>
+
+    <!-- Floating Chatbot Widget -->
+    <div class="chatbot-wrapper">
+        <button id="chat-toggle" class="chat-toggle">💬</button>
+        <div id="chat-window" class="chat-window hidden">
+            <div class="chat-header">
+                <h3>Nexus Bot</h3>
+                <span id="close-chat" style="cursor: pointer;">✖</span>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="bot-msg">Hi! Ask me anything about Siddala's skills or projects!</div>
+            </div>
+            <form id="chat-form" class="chat-input-area">
+                <input type="text" id="chat-input" autocomplete="off" placeholder="Type a message..." required>
+                <button type="submit">➤</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Siddala Sai Kumar. Built with code and passion.</p>
     </footer>

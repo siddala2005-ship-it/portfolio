@@ -3,6 +3,8 @@ let app=express();
 let port=process.env.PORT || 5050;
 let err=require("./expresserror");
 app.use(express.static("public"));
+app.use(express.json()); // Built-in middleware for JSON parsing
+app.use(express.urlencoded({ extended: true })); // For form parsing
 //using next middle ware
 /*app.use((req,res,
    next)=>{
@@ -57,6 +59,34 @@ app.use((req,res)=>{
 });
 */
 //err middleware
+
+// --- FULL STACK BACKEND ROUTES ---
+app.post("/api/contact", (req, res) => {
+    let { name, email, message } = req.body;
+    console.log(`[Contact Form] Message from ${name} (${email}): ${message}`);
+    // In a real app, you would save this to a database (like MongoDB) or send an email here.
+    res.json({ success: true, response: "Thanks for reaching out! Your message was received securely." });
+});
+
+app.post("/api/chat", (req, res) => {
+    let { userMessage } = req.body;
+    let botReply = "I am an AI assistant. I don't have a real brain yet, but I hear you!";
+    
+    // Simple keyword based algorithm to simulate AI
+    let msg = userMessage.toLowerCase();
+    if (msg.includes("hello") || msg.includes("hi")) botReply = "Hello! How can I help you today?";
+    else if (msg.includes("project") || msg.includes("work")) botReply = "Siddala has worked on some great projects like a Voice Assistant and Smart Waste Segregator. Check out the Projects section!";
+    else if (msg.includes("skill") || msg.includes("know")) botReply = "He knows C++, Python, JavaScript, and has strong skills in IoT, AI, and Machine Learning!";
+    else if (msg.includes("hire") || msg.includes("contact")) botReply = "You can use the form below to email him directly, or connect on LinkedIn!";
+    
+    console.log(`[Chatbot] User: ${userMessage} | Bot: ${botReply}`);
+    // Simulate slight network delay
+    setTimeout(() => {
+        res.json({ success: true, reply: botReply });
+    }, 800);
+});
+// ---------------------------------
+
 app.get("/err", (req, res, next) => {
     try {
         abcd = abcd;   // this will throw error
