@@ -1,4 +1,5 @@
 let express=require("express");
+let nodemailer=require("nodemailer");
 let app=express();
 let port=process.env.PORT || 5050;
 let err=require("./expresserror");
@@ -61,11 +62,31 @@ app.use((req,res)=>{
 //err middleware
 
 // --- FULL STACK BACKEND ROUTES ---
-app.post("/api/contact", (req, res) => {
+app.post("/api/contact", async (req, res) => {
     let { name, email, message } = req.body;
     console.log(`[Contact Form] Message from ${name} (${email}): ${message}`);
-    // In a real app, you would save this to a database (like MongoDB) or send an email here.
-    res.json({ success: true, response: "Thanks for reaching out! Your message was received securely." });
+    
+    try {
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER, 
+                pass: process.env.EMAIL_PASS
+            }
+        });
+        
+        await transporter.sendMail({
+            from: `"${name}" <${email}>`,
+            to: process.env.EMAIL_USER,
+            subject: `New Portfolio Message from ${name}`,
+            text: `You have received a new message from ${name} (${email}):\n\n${message}`,
+        });
+        
+        res.json({ success: true, response: "Thanks! Your message was successfully emailed directly to my inbox." });
+    } catch (error) {
+        console.error("Nodemailer Error (Likely missing EMAIL_USER/EMAIL_PASS):", error.message);
+        res.json({ success: true, response: "Message received by server! (Note: Real email delivery failed due to missing credential setup)." });
+    }
 });
 
 app.post("/api/chat", (req, res) => {

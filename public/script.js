@@ -31,6 +31,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // --- THEME TOGGLE LOGIC ---
+    const themeToggle = document.getElementById("theme-toggle");
+    if(themeToggle) {
+        if(localStorage.getItem("theme") === "light") {
+            document.body.classList.add("light-mode");
+            themeToggle.innerText = "🌙";
+        }
+        
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+            if(document.body.classList.contains("light-mode")) {
+                localStorage.setItem("theme", "light");
+                themeToggle.innerText = "🌙";
+            } else {
+                localStorage.setItem("theme", "dark");
+                themeToggle.innerText = "☀️";
+            }
+        });
+    }
+
     // --- FULL STACK LOGIC (Client-Side) ---
 
     // 1. Form Submission (Client -> Express)

@@ -524,6 +524,49 @@ footer {
     padding: 0 10px;
 }
 
+/* Light Mode Overrides */
+body.light-mode {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --primary-glow: rgba(99, 102, 241, 0.2);
+    --secondary-glow: rgba(168, 85, 247, 0.2);
+    --card-bg: #ffffff;
+}
+body.light-mode .navbar {
+    background: rgba(248, 250, 252, 0.85);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+body.light-mode .dark-bg {
+    background: #f1f5f9;
+}
+body.light-mode .project-card, body.light-mode .skill-tag, body.light-mode .contact-form input, body.light-mode .contact-form textarea, body.light-mode .chat-window {
+    border-color: rgba(0,0,0,0.1);
+}
+body.light-mode .contact-form input, body.light-mode .contact-form textarea {
+    background: #ffffff;
+    color: #0f172a;
+}
+body.light-mode .timeline {
+    border-left: 2px solid rgba(0,0,0,0.1);
+}
+body.light-mode .bot-msg {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+body.light-mode .chat-input-area {
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+body.light-mode .chat-input-area input {
+    color: #0f172a;
+}
+body.light-mode .btn-secondary {
+    color: var(--text-color);
+    border-color: rgba(0,0,0,0.2);
+}
+body.light-mode .btn-secondary:hover {
+    background: rgba(0,0,0,0.05);
+}
+
 /* Responsive UI */
 @media (max-width: 768px) {
     .nav-links {
